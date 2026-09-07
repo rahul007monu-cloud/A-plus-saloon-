@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Plus Salon — Leads Dashboard</title>
+  <meta name="description" content="Private owner dashboard for viewing and exporting salon booking leads." />
+  <meta name="theme-color" content="#2a1a2e" />
+
+  <!-- Owner-only dashboard: keep it out of search engines -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="admin">
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="assets/img/logo.svg" width="40" height="40" alt="" />
+        <span class="brand__name" data-salon-name>A Plus Salon</span>
+      </a>
+      <nav class="admin-nav" aria-label="Dashboard">
+        <a class="admin-nav__link" href="index.html">View public site →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="container">
+      <div class="admin-head">
+        <h1 class="admin-head__title">Leads Dashboard</h1>
+        <p class="admin-head__sub">
+          Every booking request submitted on your website is saved here.
+        </p>
+      </div>
+
+      <!-- Storage note -->
+      <p class="admin-note" role="note">
+        <strong>Note:</strong> Leads are stored in <em>this browser's</em> local
+        storage (device-local, not on a server), so they are visible on this
+        device/browser only. Your primary real-time channel is
+        <strong>WhatsApp</strong> — every booking also opens a prefilled
+        WhatsApp message to you the moment a customer submits the form. Use
+        <em>Export CSV</em> regularly to keep your own backup.
+      </p>
+
+      <!-- ============================ SUMMARY ============================ -->
+      <section class="admin-summary" aria-label="Summary">
+        <div class="stat-card">
+          <span class="stat-card__value" id="stat-total">0</span>
+          <span class="stat-card__label">Total leads</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__value" id="stat-today">0</span>
+          <span class="stat-card__label">Leads today</span>
+        </div>
+      </section>
+
+      <!-- ============================ TOOLBAR ============================ -->
+      <div class="admin-toolbar">
+        <div class="admin-toolbar__search field">
+          <label for="search" class="sr-only">Search leads</label>
+          <input id="search" type="search" inputmode="search" autocomplete="off"
+                 placeholder="Search by name, phone or service…" />
+        </div>
+        <div class="admin-toolbar__actions">
+          <button id="btn-refresh" class="btn btn--outline btn--sm" type="button">Refresh</button>
+          <button id="btn-export" class="btn btn--primary btn--sm" type="button">Export CSV</button>
+          <button id="btn-clear" class="btn btn--danger btn--sm" type="button">Clear all</button>
+        </div>
+      </div>
+
+      <!-- ============================ EMPTY STATES ============================ -->
+      <p id="leads-empty" class="admin-empty" hidden>
+        No leads yet. When customers submit the booking form on your website,
+        their requests will appear here automatically.
+      </p>
+      <p id="leads-no-results" class="admin-empty" hidden>
+        No leads match your search.
+      </p>
+
+      <!-- ============================ TABLE (desktop) ============================ -->
+      <div id="leads-table-wrap" class="leads-table-wrap" hidden>
+        <table class="leads-table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Service</th>
+              <th scope="col">Preferred</th>
+              <th scope="col">Message</th>
+              <th scope="col">Created</th>
+            </tr>
+          </thead>
+          <tbody id="leads-tbody">
+            <!-- Rows rendered by admin.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ============================ CARDS (mobile) ============================ -->
+      <div id="leads-cards" class="leads-cards" hidden>
+        <!-- Cards rendered by admin.js -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__bottom container">
+      <p>&copy; <span data-year>2025</span> <span data-salon-name>A Plus Salon</span> — private leads dashboard.</p>
+    </div>
+  </footer>
+
+  <!-- Config first, then dashboard logic -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

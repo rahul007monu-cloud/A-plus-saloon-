@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A Plus Salon — sitemap.xml
+  NOTE (owner): replace the placeholder domain "a-plus-salon.example.com"
+  with your real production domain after deploying on Vercel.
+  The private owner dashboard is intentionally NOT listed here.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://a-plus-salon.example.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

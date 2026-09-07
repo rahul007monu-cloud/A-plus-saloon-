@@ -1,0 +1,7 @@
+{
+  "task_id": "task-salon-leadgen-mvp",
+  "task_description": "Build a polished, Vercel-deployable salon business + lead-generation MVP web app (mobile-responsive) for a single salon/showroom. Because the sandbox network mode (INTEGRATIONS_ONLY) blocks npm package installs (registry returns 403), the app is implemented as a dependency-free static site (HTML5 + CSS3 + vanilla JS). Core: SEO-optimized landing page with services, an appointment/lead capture form that delivers leads instantly to the owner via free WhatsApp click-to-chat (wa.me) and stores them in localStorage, and an owner admin dashboard to view/export captured leads. Includes vercel.json, SEO assets, and a README.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}

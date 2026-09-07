@@ -1,0 +1,26 @@
+{
+  "project_type": "Static, dependency-free salon business + lead-generation web app (mobile-first, SEO-optimized). Vercel static deployment.",
+  "language": "HTML5, CSS3, vanilla JavaScript (ES6+). No frameworks, no build step.",
+  "build_system": "None required. Static files served as-is. Vercel deploys the repo root as static output (no build command).",
+  "test_framework": "No npm test framework available (npm registry blocked). Verification is done via: (1) HTML5 structural validity checks, (2) Node.js built-in syntax check for JS files using `node --check` with NODE_OPTIONS unset, (3) local static server smoke test via `python3 -m http.server`.",
+  "build_command": "None. (Static site — Vercel serves files directly with no build.)",
+  "test_command": "NODE_OPTIONS=\"\" node --check <file.js> for each JS file; python3 -m http.server 8000 for local smoke test.",
+  "verification_instructions": "1) Run `NODE_OPTIONS=\"\" node --check` on every .js file to confirm no syntax errors. 2) Start `python3 -m http.server 8000` from repo root and confirm index.html and admin.html return HTTP 200 with expected content via curl. 3) Confirm every internal asset reference (css/js/images) resolves to an existing file (no 404s). 4) Confirm vercel.json is valid JSON.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "No dependency install. IMPORTANT: The sandbox sets NODE_OPTIONS to a proxy-bootstrap require that breaks node/npm; always prefix node commands with NODE_OPTIONS=\"\". npm install of external packages is BLOCKED (registry returns 403 Forbidden) under INTEGRATIONS_ONLY network mode — do NOT attempt to add npm dependencies.",
+  "environment_constraints": "NETWORK MODE = INTEGRATIONS_ONLY. External npm registry is confirmed BLOCKED (403 Forbidden on npm install). No external SDKs (Supabase, Firebase, paid WhatsApp Business API, analytics scripts requiring install). No package manager installs at all. Must be 100% dependency-free / vanilla. No CDN-loaded fonts/libs at build time is fine for deploy (browser fetches them at runtime from user's browser), but keep the app fully functional even if a CDN font fails — use system-font fallbacks. Leads are stored client-side in localStorage (no backend DB available offline). WhatsApp delivery via wa.me click-to-chat (free, no API).",
+  "contribution_requirements": "No CONTRIBUTING.md (empty repo). Do NOT push or create PRs — orchestrator handles publishing. Keep working tree ready; local commits are acceptable but optional.",
+  "key_patterns": "Mobile-first responsive CSS with a single stylesheet using CSS custom properties (design tokens) and flex/grid. Semantic HTML with proper meta tags, Open Graph, JSON-LD LocalBusiness schema for SEO. Progressive enhancement: form works and validates in vanilla JS; on submit it (a) builds a prefilled wa.me WhatsApp message to the owner for instant lead delivery and (b) saves the lead to localStorage so the owner admin page can view captured leads. Config (salon name, phone, services, WhatsApp number) centralized in a single config.js object so it is trivial to customize.",
+  "relevant_files": [
+    "index.html (landing page + booking form)",
+    "admin.html (owner leads dashboard)",
+    "assets/css/styles.css (single mobile-first stylesheet)",
+    "assets/js/config.js (central salon config: name, whatsapp number, services)",
+    "assets/js/main.js (landing page logic: nav, form validation, wa.me link, localStorage save)",
+    "assets/js/admin.js (admin dashboard logic: read/render/export/clear leads from localStorage)",
+    "vercel.json (static deploy config + clean URLs)",
+    "README.md (setup, customization, deploy-to-Vercel steps, deferred features)",
+    "robots.txt and sitemap.xml (SEO)"
+  ],
+  "directory_structure": "Repo root contains index.html, admin.html, vercel.json, README.md, robots.txt, sitemap.xml, favicon. assets/css/ holds styles.css. assets/js/ holds config.js, main.js, admin.js. assets/img/ holds simple SVG/placeholder imagery and og-image."
+}

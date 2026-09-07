@@ -1,0 +1,11 @@
+# A Plus Salon — robots.txt
+# Allow search engines to index the public site, but keep the private
+# owner dashboard (admin.html) out of search results.
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+# NOTE (owner): replace the placeholder domain below with your real
+# production domain once deployed on Vercel.
+Sitemap: https://a-plus-salon.example.com/sitemap.xml
