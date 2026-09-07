@@ -10,7 +10,7 @@
  *  Bump CACHE_VERSION whenever you change cached assets to force an update.
  * ----------------------------------------------------------------------------
  */
-var CACHE_VERSION = "aplus-salon-v1";
+var CACHE_VERSION = "aplus-salon-v2";
 var CORE_ASSETS = [
   "./",
   "./index.html",
@@ -65,6 +65,12 @@ self.addEventListener("fetch", function (event) {
   // Only handle same-origin GET requests; let the browser handle the rest
   // (e.g. wa.me links, cross-origin, POST).
   if (req.method !== "GET" || new URL(req.url).origin !== self.location.origin) {
+    return;
+  }
+
+  // NEVER cache the dynamic API (services, slots, bookings). These must always
+  // hit the network so availability and rates are live and never stale.
+  if (new URL(req.url).pathname.indexOf("/api/") === 0) {
     return;
   }
 

@@ -176,19 +176,20 @@
             <p class="field__error" data-error-for="service" role="alert" aria-live="polite"></p>
           </div>
 
-          <div class="field field--half">
-            <label for="date">Preferred Date</label>
-            <input id="date" name="date" type="date" autocomplete="off" />
+          <div class="field">
+            <label for="date">Preferred Date <span class="req" aria-hidden="true">*</span></label>
+            <input id="date" name="date" type="date" autocomplete="off" required aria-required="true" />
+            <p class="field__error" data-error-for="date" role="alert" aria-live="polite"></p>
           </div>
 
-          <div class="field field--half">
-            <label for="time">Preferred Time</label>
-            <select id="time" name="time">
-              <option value="">Any time</option>
-              <option value="Morning (10 AM – 12 PM)">Morning (10 AM – 12 PM)</option>
-              <option value="Afternoon (12 PM – 4 PM)">Afternoon (12 PM – 4 PM)</option>
-              <option value="Evening (4 PM – 8 PM)">Evening (4 PM – 8 PM)</option>
-            </select>
+          <div class="field">
+            <label id="slots-label">Pick a 45-minute Time Slot <span class="req" aria-hidden="true">*</span></label>
+            <div id="slots" class="slots" role="group" aria-labelledby="slots-label" aria-live="polite">
+              <p class="slots__hint">Select a date above to see available 45-minute time slots.</p>
+            </div>
+            <!-- The chosen slot's start time (HH:MM) is stored here for submit. -->
+            <input id="time" name="time" type="hidden" value="" />
+            <p class="field__error" data-error-for="time" role="alert" aria-live="polite"></p>
           </div>
 
           <div class="field">

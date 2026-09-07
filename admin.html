@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Plus Salon — Leads Dashboard</title>
-  <meta name="description" content="Private owner dashboard for viewing and exporting salon booking leads." />
+  <title>A Plus Salon — Admin</title>
+  <meta name="description" content="Private owner admin for managing bookings, time slots and services." />
   <meta name="theme-color" content="#2a1a2e" />
 
   <!-- Owner-only dashboard: keep it out of search engines -->
@@ -41,90 +41,165 @@
   <main class="admin-main">
     <div class="container">
       <div class="admin-head">
-        <h1 class="admin-head__title">Leads Dashboard</h1>
+        <h1 class="admin-head__title">Salon Admin</h1>
         <p class="admin-head__sub">
-          Every booking request submitted on your website is saved here.
+          Manage bookings, time slots and your services &amp; rates.
         </p>
       </div>
 
-      <!-- Storage note -->
-      <p class="admin-note" role="note">
-        <strong>Note:</strong> Leads are stored in <em>this browser's</em> local
-        storage (device-local, not on a server), so they are visible on this
-        device/browser only. Your primary real-time channel is
-        <strong>WhatsApp</strong> — every booking also opens a prefilled
-        WhatsApp message to you the moment a customer submits the form. Use
-        <em>Export CSV</em> regularly to keep your own backup.
-      </p>
-
-      <!-- ============================ SUMMARY ============================ -->
-      <section class="admin-summary" aria-label="Summary">
-        <div class="stat-card">
-          <span class="stat-card__value" id="stat-total">0</span>
-          <span class="stat-card__label">Total leads</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-card__value" id="stat-today">0</span>
-          <span class="stat-card__label">Leads today</span>
+      <!-- ============================ PIN GATE ============================ -->
+      <!-- Shown only when the backend (Vercel KV) is connected. -->
+      <section id="admin-gate" class="admin-gate" hidden aria-label="Admin sign in">
+        <div class="admin-gate__card">
+          <h2 class="admin-gate__title">Enter Admin PIN</h2>
+          <p class="admin-gate__text">
+            This dashboard is protected. Enter the PIN you set in Vercel
+            (<code>ADMIN_PIN</code>) to manage bookings and services.
+          </p>
+          <form id="gate-form" class="admin-gate__form" autocomplete="off">
+            <div class="field">
+              <label for="pin" class="sr-only">Admin PIN</label>
+              <input id="pin" name="pin" type="password" inputmode="numeric"
+                     autocomplete="off" placeholder="Admin PIN" />
+              <p class="field__error" id="gate-error" role="alert" aria-live="polite"></p>
+            </div>
+            <button class="btn btn--primary btn--block" type="submit">Unlock</button>
+          </form>
         </div>
       </section>
 
-      <!-- ============================ TOOLBAR ============================ -->
-      <div class="admin-toolbar">
-        <div class="admin-toolbar__search field">
-          <label for="search" class="sr-only">Search leads</label>
-          <input id="search" type="search" inputmode="search" autocomplete="off"
-                 placeholder="Search by name, phone or service…" />
+      <!-- ============================ APP ============================ -->
+      <div id="admin-app" hidden>
+        <!-- Mode banner: tells the owner whether data is shared or device-local -->
+        <p id="mode-note" class="admin-note" role="note"></p>
+
+        <!-- Tabs -->
+        <div class="admin-tabs" role="tablist" aria-label="Admin sections">
+          <button id="tab-bookings" class="admin-tab is-active" type="button"
+                  role="tab" aria-selected="true" aria-controls="panel-bookings">
+            Bookings
+          </button>
+          <button id="tab-services" class="admin-tab" type="button"
+                  role="tab" aria-selected="false" aria-controls="panel-services">
+            Services &amp; Rates
+          </button>
         </div>
-        <div class="admin-toolbar__actions">
-          <button id="btn-refresh" class="btn btn--outline btn--sm" type="button">Refresh</button>
-          <button id="btn-export" class="btn btn--primary btn--sm" type="button">Export CSV</button>
-          <button id="btn-clear" class="btn btn--danger btn--sm" type="button">Clear all</button>
-        </div>
-      </div>
 
-      <!-- ============================ EMPTY STATES ============================ -->
-      <p id="leads-empty" class="admin-empty" hidden>
-        No leads yet. When customers submit the booking form on your website,
-        their requests will appear here automatically.
-      </p>
-      <p id="leads-no-results" class="admin-empty" hidden>
-        No leads match your search.
-      </p>
+        <!-- ==================== BOOKINGS PANEL ==================== -->
+        <section id="panel-bookings" class="admin-panel" role="tabpanel"
+                 aria-labelledby="tab-bookings">
+          <section class="admin-summary" aria-label="Summary">
+            <div class="stat-card">
+              <span class="stat-card__value" id="stat-total">0</span>
+              <span class="stat-card__label">Total bookings</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__value" id="stat-today">0</span>
+              <span class="stat-card__label">For today</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__value" id="stat-pending">0</span>
+              <span class="stat-card__label">Pending</span>
+            </div>
+          </section>
 
-      <!-- ============================ TABLE (desktop) ============================ -->
-      <div id="leads-table-wrap" class="leads-table-wrap" hidden>
-        <table class="leads-table">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Service</th>
-              <th scope="col">Preferred</th>
-              <th scope="col">Message</th>
-              <th scope="col">Created</th>
-            </tr>
-          </thead>
-          <tbody id="leads-tbody">
-            <!-- Rows rendered by admin.js -->
-          </tbody>
-        </table>
-      </div>
+          <div class="admin-toolbar">
+            <div class="admin-toolbar__search field">
+              <label for="search" class="sr-only">Search bookings</label>
+              <input id="search" type="search" inputmode="search" autocomplete="off"
+                     placeholder="Search by name, phone or service…" />
+            </div>
+            <div class="admin-toolbar__actions">
+              <label for="status-filter" class="sr-only">Filter by status</label>
+              <select id="status-filter" class="admin-select">
+                <option value="">All statuses</option>
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+              <button id="btn-refresh" class="btn btn--outline btn--sm" type="button">Refresh</button>
+              <button id="btn-export" class="btn btn--primary btn--sm" type="button">Export CSV</button>
+              <button id="btn-clear" class="btn btn--danger btn--sm" type="button" hidden>Clear all</button>
+            </div>
+          </div>
 
-      <!-- ============================ CARDS (mobile) ============================ -->
-      <div id="leads-cards" class="leads-cards" hidden>
-        <!-- Cards rendered by admin.js -->
+          <p id="bookings-empty" class="admin-empty" hidden>
+            No bookings yet. When customers book on your website, they'll appear here.
+          </p>
+          <p id="bookings-no-results" class="admin-empty" hidden>
+            No bookings match your search/filter.
+          </p>
+
+          <!-- Table (desktop) -->
+          <div id="bookings-table-wrap" class="leads-table-wrap" hidden>
+            <table class="leads-table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Service</th>
+                  <th scope="col">Slot</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="bookings-tbody"></tbody>
+            </table>
+          </div>
+
+          <!-- Cards (mobile) -->
+          <div id="bookings-cards" class="leads-cards" hidden></div>
+        </section>
+
+        <!-- ==================== SERVICES PANEL ==================== -->
+        <section id="panel-services" class="admin-panel" role="tabpanel"
+                 aria-labelledby="tab-services" hidden>
+          <p id="services-readonly-note" class="admin-note" role="note" hidden>
+            <strong>Read-only:</strong> services shown here come from
+            <code>assets/js/config.js</code>. To add, edit rates or remove
+            services <em>from this screen</em> (shared across all customer
+            devices), connect Vercel KV and set <code>ADMIN_PIN</code> — see the
+            README. Until then, edit <code>config.js</code> to change services.
+          </p>
+
+          <!-- Add new service -->
+          <form id="service-form" class="service-form" autocomplete="off">
+            <h2 class="service-form__title">Add a service / product</h2>
+            <div class="service-form__grid">
+              <div class="field">
+                <label for="svc-name">Name <span class="req">*</span></label>
+                <input id="svc-name" name="name" type="text" placeholder="e.g. Kids Haircut" />
+              </div>
+              <div class="field">
+                <label for="svc-price">Rate (from) <span class="req">*</span></label>
+                <input id="svc-price" name="priceFrom" type="number" min="0" step="1" placeholder="e.g. 120" />
+              </div>
+              <div class="field">
+                <label for="svc-duration">Duration (min)</label>
+                <input id="svc-duration" name="durationMins" type="number" min="1" step="1" placeholder="e.g. 30" />
+              </div>
+              <div class="field service-form__desc">
+                <label for="svc-desc">Description</label>
+                <input id="svc-desc" name="description" type="text" placeholder="Short one-line description" />
+              </div>
+            </div>
+            <p class="field__error" id="service-form-error" role="alert" aria-live="polite"></p>
+            <button id="svc-add-btn" class="btn btn--primary" type="submit">Add service</button>
+          </form>
+
+          <div id="services-list" class="services-admin-list"></div>
+        </section>
       </div>
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="site-footer__bottom container">
-      <p>&copy; <span data-year>2025</span> <span data-salon-name>A Plus Salon</span> — private leads dashboard.</p>
+      <p>&copy; <span data-year>2025</span> <span data-salon-name>A Plus Salon</span> — private admin.</p>
     </div>
   </footer>
 
-  <!-- Config first, then dashboard logic -->
+  <!-- Config first, then admin logic -->
   <script src="assets/js/config.js"></script>
   <script src="assets/js/admin.js"></script>
   <script src="assets/js/pwa.js"></script>

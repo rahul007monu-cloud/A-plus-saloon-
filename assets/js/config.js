@@ -43,6 +43,28 @@
     },
 
     /*
+     * ---- Appointment booking / time-slot settings ----
+     * Customers book a fixed-length time slot on a chosen date. These values
+     * are the FALLBACK / seed used before the backend (Vercel KV) is connected;
+     * once KV is live the same defaults are used by the serverless /api to
+     * generate slots on the server so availability is shared across devices.
+     *
+     *   openTime / closeTime : shop working window, 24h "HH:MM"
+     *   slotMinutes          : length of each bookable slot (owner asked for 45)
+     *   workingDays          : days the shop is open (0=Sun … 6=Sat)
+     *   leadHoursMin         : how many hours ahead "today" slots must be booked
+     *   apiBase              : base path for the serverless API (leave as "/api")
+     */
+    booking: {
+      openTime: "10:00",
+      closeTime: "20:00",
+      slotMinutes: 45,
+      workingDays: [0, 1, 2, 3, 4, 5, 6],
+      leadHoursMin: 0,
+      apiBase: "/api"
+    },
+
+    /*
      * EDIT ME — Services. Add/remove/reorder freely.
      * Each service: { id, name, priceFrom, durationMins, description }
      *   - id           : unique short slug (used internally)

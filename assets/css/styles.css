@@ -928,3 +928,292 @@ p {
     transform: none;
   }
 }
+
+
+/* ==========================================================================
+   Booking — 45-minute time-slot picker
+   ========================================================================== */
+.slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 0.5rem;
+}
+.slots__hint {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+.slot {
+  min-height: var(--tap);
+  padding: 0.55rem 0.5rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.slot:hover {
+  border-color: var(--color-primary);
+}
+.slot.is-selected {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.slot--taken,
+.slot:disabled {
+  color: var(--color-muted);
+  background: #f2edf4;
+  border-color: var(--color-border);
+  text-decoration: line-through;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   Admin — PIN gate
+   ========================================================================== */
+.admin-gate {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0;
+}
+.admin-gate__card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 1.75rem 1.5rem;
+}
+.admin-gate__title {
+  margin-top: 0;
+}
+.admin-gate__text {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+.admin-gate__text code {
+  background: #f2edf4;
+  padding: 0.05rem 0.35rem;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+.admin-gate__form .field {
+  margin-bottom: 0.75rem;
+}
+.admin-gate__form input {
+  min-height: var(--tap);
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  color: var(--color-ink);
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+.admin-gate__form input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(122, 31, 92, 0.15);
+}
+
+/* Success / connected variant of the note box */
+.admin-note--ok {
+  background: #e9f9ef;
+  border-color: var(--color-whatsapp);
+  border-left-color: var(--color-whatsapp-dark);
+  color: #0b5a2c;
+}
+
+/* ==========================================================================
+   Admin — tabs
+   ========================================================================== */
+.admin-tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin: 1.25rem 0 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.admin-tab {
+  appearance: none;
+  min-height: var(--tap);
+  padding: 0.6rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-muted);
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+}
+.admin-tab:hover {
+  color: var(--color-primary);
+}
+.admin-tab.is-active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Admin — status badges + booking actions
+   ========================================================================== */
+.status-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+.status-badge--pending {
+  background: #fbf0d8;
+  color: #8a5a00;
+}
+.status-badge--confirmed {
+  background: #d9f7e4;
+  color: #0b5a2c;
+}
+.status-badge--cancelled {
+  background: #f6dcd8;
+  color: #96271b;
+}
+.booking-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+.col-actions {
+  white-space: nowrap;
+}
+.admin-select {
+  min-height: 38px;
+  padding: 0.4rem 0.7rem;
+  font: inherit;
+  color: var(--color-ink);
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.admin-select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(122, 31, 92, 0.15);
+}
+
+/* ==========================================================================
+   Admin — services manager
+   ========================================================================== */
+.service-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.service-form__title {
+  margin-top: 0;
+  font-size: 1.15rem;
+}
+.service-form__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+.service-form__grid .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.service-form__grid label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.service-form__grid input {
+  min-height: var(--tap);
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  color: var(--color-ink);
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+.service-form__grid input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(122, 31, 92, 0.15);
+}
+
+.services-admin-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.svc-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.1rem 1.2rem;
+}
+.svc-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+}
+.svc-card__name {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.svc-card__price {
+  font-weight: 700;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+.svc-card__meta {
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  margin: 0.25rem 0 0.4rem;
+}
+.svc-card__desc {
+  color: var(--color-muted);
+  margin: 0 0 0.6rem;
+}
+.svc-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.svc-edit .service-form__grid {
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 600px) {
+  .service-form__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .service-form__desc {
+    grid-column: 1 / -1;
+  }
+  .services-admin-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 900px) {
+  .services-admin-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
