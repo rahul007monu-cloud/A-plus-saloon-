@@ -23,10 +23,10 @@
      * Format: <countrycode><number>. Example (India): 919999999999
      * This number receives every booking/lead as a WhatsApp message.
      */
-    ownerWhatsApp: "919999999999",
+    ownerWhatsApp: "919929113574",
 
     /* EDIT ME — number shown/dialed on the site (human friendly is fine) */
-    displayPhone: "+91 99999 99999",
+    displayPhone: "+91 99291 13574",
 
     /* EDIT ME — street address + city */
     address: "123 Main Street, Near City Center",
@@ -56,7 +56,7 @@
       {
         id: "haircut-styling",
         name: "Haircut & Styling",
-        priceFrom: 299,
+        priceFrom: 150,
         durationMins: 45,
         description: "Precision cut and blow-dry styling tailored to your face shape."
       },
