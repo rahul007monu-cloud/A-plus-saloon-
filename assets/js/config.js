@@ -103,6 +103,13 @@
         description: "Sharp beard trim, shaping and grooming for a clean finish."
       },
       {
+        id: "shave",
+        name: "Shave",
+        priceFrom: 60,
+        durationMins: 20,
+        description: "Clean, smooth classic shave with hot towel and aftercare."
+      },
+      {
         id: "threading-waxing",
         name: "Threading & Waxing",
         priceFrom: 149,
