@@ -1,0 +1,546 @@
+/* ==========================================================================
+   A Plus Salon — Mobile-first stylesheet (vanilla CSS, no dependencies)
+   ========================================================================== */
+
+/* ---------------------------------------------------- Design tokens */
+:root {
+  --color-bg: #fdfbf7;
+  --color-surface: #ffffff;
+  --color-ink: #241a28;
+  --color-muted: #6b5f70;
+  --color-primary: #7a1f5c;
+  --color-primary-dark: #5c1545;
+  --color-accent: #b8860b;
+  --color-accent-light: #e0b64d;
+  --color-plum: #2a1a2e;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1da851;
+  --color-error: #c0392b;
+  --color-border: #e6ddea;
+
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 6px 24px rgba(42, 26, 46, 0.08);
+  --shadow-lg: 0 12px 40px rgba(42, 26, 46, 0.14);
+
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-head: Georgia, "Times New Roman", "Playfair Display", serif;
+
+  --tap: 44px;
+  --maxw: 1080px;
+}
+
+/* ---------------------------------------------------- Base / reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: var(--color-primary);
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-head);
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+p {
+  margin: 0 0 1em;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.1rem;
+}
+
+/* Accessibility helpers */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  z-index: 200;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent-light);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------- Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--tap);
+  padding: 0.7rem 1.3rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.06s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn--lg {
+  padding: 0.9rem 1.6rem;
+  font-size: 1.05rem;
+}
+.btn--block {
+  width: 100%;
+}
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+}
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn--outline:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn--whatsapp {
+  background: var(--color-whatsapp);
+  color: #063d1e;
+}
+.btn--whatsapp:hover {
+  background: var(--color-whatsapp-dark);
+  color: #fff;
+}
+.btn__wa-icon {
+  font-size: 1.1em;
+}
+
+/* ---------------------------------------------------- Header / nav */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(253, 251, 247, 0.96);
+  backdrop-filter: saturate(1.2) blur(6px);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 62px;
+  gap: 0.75rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: var(--color-ink);
+}
+.brand__logo {
+  width: 38px;
+  height: 38px;
+}
+.brand__name {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.nav-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.nav-toggle__bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--color-ink);
+  border-radius: 2px;
+}
+.nav-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 1.1rem 1.1rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+}
+.nav-menu.is-open {
+  display: flex;
+}
+.nav-menu a {
+  display: block;
+  padding: 0.7rem 0.25rem;
+  min-height: var(--tap);
+  color: var(--color-ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+.nav-menu a:hover {
+  color: var(--color-primary);
+}
+.nav-menu__cta {
+  margin-top: 0.35rem;
+}
+
+/* ---------------------------------------------------- Hero */
+.hero {
+  background: linear-gradient(150deg, var(--color-plum) 0%, #4a2b4f 100%);
+  color: #f7eefb;
+  padding: 3rem 0 3.5rem;
+}
+.hero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  color: var(--color-accent-light);
+  margin-bottom: 0.75rem;
+}
+.hero__title {
+  font-size: clamp(1.9rem, 6vw, 3rem);
+  color: #fff;
+}
+.hero__accent {
+  color: var(--color-accent-light);
+}
+.hero__subtext {
+  max-width: 46ch;
+  color: #e8dcec;
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+}
+
+/* ---------------------------------------------------- Sections */
+.section {
+  padding: 3rem 0;
+}
+.section__title {
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  text-align: center;
+}
+.section__lead {
+  text-align: center;
+  max-width: 55ch;
+  margin: 0 auto 2rem;
+  color: var(--color-muted);
+}
+.services {
+  background: var(--color-bg);
+}
+.benefits {
+  background: #f6eef3;
+}
+
+/* ---------------------------------------------------- Service cards */
+.services__grid,
+.benefits__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.service-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.service-card__name {
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+}
+.service-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+}
+.service-card__price {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.service-card__dur {
+  color: var(--color-muted);
+}
+.service-card__desc {
+  color: var(--color-muted);
+  flex: 1;
+}
+.service-card__cta {
+  margin-top: 0.75rem;
+  align-self: flex-start;
+}
+
+/* ---------------------------------------------------- Benefits */
+.benefits__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.benefit {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.benefit__icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.benefit__title {
+  font-size: 1.1rem;
+}
+.benefit p {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* ---------------------------------------------------- Booking form */
+.booking {
+  background: var(--color-bg);
+}
+.booking__inner {
+  max-width: 640px;
+}
+.booking-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+}
+.field {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.field label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.field__opt {
+  font-weight: 400;
+  color: var(--color-muted);
+}
+.req {
+  color: var(--color-error);
+}
+.field input,
+.field select,
+.field textarea {
+  min-height: var(--tap);
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  color: var(--color-ink);
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+.field textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(122, 31, 92, 0.15);
+}
+.field input.is-invalid,
+.field select.is-invalid {
+  border-color: var(--color-error);
+}
+.field__error {
+  color: var(--color-error);
+  font-size: 0.85rem;
+  margin: 0;
+  min-height: 1em;
+}
+.booking-form .btn[type="submit"] {
+  grid-column: 1 / -1;
+  margin-top: 0.25rem;
+}
+
+/* Honeypot — visually hidden but present for bots */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Success / fallback states */
+.form-success {
+  grid-column: 1 / -1;
+  background: #e9f9ef;
+  border: 1.5px solid var(--color-whatsapp);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.1rem;
+  color: #0b5a2c;
+}
+.form-success strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.form-success p {
+  margin: 0.25rem 0 0;
+}
+.whatsapp-fallback-wrap.is-emphasized {
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------- Footer */
+.site-footer {
+  background: var(--color-plum);
+  color: #e8dcec;
+  padding: 2.5rem 0 1.25rem;
+}
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+.site-footer h3 {
+  color: #fff;
+  font-size: 1.05rem;
+}
+.site-footer__brand {
+  color: var(--color-accent-light);
+}
+.site-footer a {
+  color: #f3e4d0;
+}
+.site-footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.site-footer__bottom {
+  margin-top: 1.75rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.85rem;
+  color: #c9b8cd;
+}
+.site-footer__bottom p {
+  margin: 0;
+}
+
+/* ---------------------------------------------------- Breakpoints */
+@media (min-width: 600px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .benefits__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .field--half {
+    grid-column: span 1;
+  }
+}
+
+@media (min-width: 900px) {
+  .nav-toggle {
+    display: none;
+  }
+  .nav-menu {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+  .nav-menu a {
+    padding: 0.4rem 0;
+  }
+  .services__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .benefits__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .site-footer__inner {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+  .hero {
+    padding: 4.5rem 0 5rem;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .btn {
+    transition: none;
+  }
+}

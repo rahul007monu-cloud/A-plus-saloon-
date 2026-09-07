@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="A Plus Salon social share image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a1a2e"/>
+      <stop offset="1" stop-color="#3d2540"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e0b64d"/>
+      <stop offset="1" stop-color="#b8860b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="none" stroke="url(#gold)" stroke-width="3" opacity="0.6"/>
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="96" font-weight="700" fill="url(#gold)">A Plus Salon</text>
+  <text x="600" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="40" fill="#f3e9d2">Look Your Best, Feel Your Best</text>
+  <text x="600" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#cdb8d0">Book your appointment on WhatsApp</text>
+</svg>

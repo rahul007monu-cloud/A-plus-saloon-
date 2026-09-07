@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Plus Salon — Look Your Best, Feel Your Best</title>
+  <meta name="description" content="A Plus Salon offers haircuts, hair color, facials, bridal makeup, manicure, pedicure and hair spa. Book your appointment instantly on WhatsApp." />
+  <meta name="theme-color" content="#2a1a2e" />
+  <link rel="canonical" href="https://a-plus-salon.example.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="business.business" />
+  <meta property="og:title" content="A Plus Salon — Look Your Best, Feel Your Best" />
+  <meta property="og:description" content="Haircuts, color, facials, bridal makeup and more. Book instantly on WhatsApp." />
+  <meta property="og:url" content="https://a-plus-salon.example.com/" />
+  <meta property="og:image" content="assets/img/og-image.svg" />
+  <meta property="og:site_name" content="A Plus Salon" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A Plus Salon — Look Your Best, Feel Your Best" />
+  <meta name="twitter:description" content="Haircuts, color, facials, bridal makeup and more. Book instantly on WhatsApp." />
+  <meta name="twitter:image" content="assets/img/og-image.svg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!-- JSON-LD: LocalBusiness / HairSalon -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "A Plus Salon",
+    "description": "Full-service salon offering haircuts, hair color, facials, bridal makeup, manicure, pedicure and hair spa.",
+    "image": "https://a-plus-salon.example.com/assets/img/og-image.svg",
+    "url": "https://a-plus-salon.example.com/",
+    "telephone": "+91 99999 99999",
+    "priceRange": "₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Main Street, Near City Center",
+      "addressLocality": "Your City"
+    },
+    "openingHours": "Mo-Su 10:00-20:00"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#booking">Skip to booking</a>
+
+  <!-- ============================ HEADER / NAV ============================ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" data-scroll-to="top">
+        <img class="brand__logo" src="assets/img/logo.svg" width="40" height="40" alt="" />
+        <span class="brand__name" data-salon-name>A Plus Salon</span>
+      </a>
+
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+
+      <nav id="nav-menu" class="nav-menu" aria-label="Primary">
+        <a href="#services" data-scroll-to="services">Services</a>
+        <a href="#benefits" data-scroll-to="benefits">Why Us</a>
+        <a href="#contact" data-scroll-to="contact">Contact</a>
+        <button class="btn btn--primary nav-menu__cta" type="button" data-scroll-to="booking">Book Now</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- =============================== HERO =============================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <p class="hero__eyebrow" data-tagline>Look Your Best, Feel Your Best</p>
+        <h1 id="hero-title" class="hero__title">
+          Premium Salon Care at <span class="hero__accent" data-salon-name>A Plus Salon</span>
+        </h1>
+        <p class="hero__subtext">
+          Haircuts, color, facials, bridal makeup and more — delivered by expert stylists.
+          Book your appointment in seconds and get confirmation right on WhatsApp.
+        </p>
+        <div class="hero__actions">
+          <button class="btn btn--primary btn--lg" type="button" data-scroll-to="booking">Book an Appointment</button>
+          <a class="btn btn--whatsapp btn--lg" data-whatsapp-link href="#" rel="noopener">
+            <span class="btn__wa-icon" aria-hidden="true">✆</span> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= SERVICES ============================= -->
+    <section id="services" class="section services" aria-labelledby="services-title">
+      <div class="container">
+        <h2 id="services-title" class="section__title">Our Services</h2>
+        <p class="section__lead">Pick a service and book instantly. Prices start from the amounts shown.</p>
+        <div id="services-grid" class="services__grid">
+          <!-- Service cards are rendered from config by main.js -->
+          <noscript>Please enable JavaScript to view our services and booking form.</noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= BENEFITS ============================= -->
+    <section id="benefits" class="section benefits" aria-labelledby="benefits-title">
+      <div class="container">
+        <h2 id="benefits-title" class="section__title">Why Choose Us</h2>
+        <ul class="benefits__grid">
+          <li class="benefit">
+            <span class="benefit__icon" aria-hidden="true">✂️</span>
+            <h3 class="benefit__title">Expert Stylists</h3>
+            <p>Trained professionals who keep up with the latest trends and techniques.</p>
+          </li>
+          <li class="benefit">
+            <span class="benefit__icon" aria-hidden="true">🧴</span>
+            <h3 class="benefit__title">Premium Products</h3>
+            <p>Only trusted, skin- and hair-friendly products for every service.</p>
+          </li>
+          <li class="benefit">
+            <span class="benefit__icon" aria-hidden="true">💬</span>
+            <h3 class="benefit__title">Instant WhatsApp Booking</h3>
+            <p>No app or account needed — book and confirm right on WhatsApp.</p>
+          </li>
+          <li class="benefit">
+            <span class="benefit__icon" aria-hidden="true">✨</span>
+            <h3 class="benefit__title">Hygienic &amp; Relaxing</h3>
+            <p>Clean, sanitized tools and a calm, welcoming space every visit.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================= BOOKING ============================= -->
+    <section id="booking" class="section booking" aria-labelledby="booking-title">
+      <div class="container booking__inner">
+        <h2 id="booking-title" class="section__title">Book Your Appointment</h2>
+        <p class="section__lead">
+          Fill in your details and we'll receive your request instantly on WhatsApp.
+        </p>
+
+        <form id="booking-form" class="booking-form" novalidate>
+          <div class="field">
+            <label for="name">Full Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required
+                   aria-required="true" placeholder="e.g. Priya Sharma" />
+            <p class="field__error" data-error-for="name" role="alert" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required
+                   aria-required="true" placeholder="e.g. +91 99999 99999" />
+            <p class="field__error" data-error-for="phone" role="alert" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="service">Service <span class="req" aria-hidden="true">*</span></label>
+            <select id="service" name="service" required aria-required="true">
+              <!-- Options populated from config by main.js -->
+              <option value="" disabled selected>Select a service…</option>
+            </select>
+            <p class="field__error" data-error-for="service" role="alert" aria-live="polite"></p>
+          </div>
+
+          <div class="field field--half">
+            <label for="date">Preferred Date</label>
+            <input id="date" name="date" type="date" autocomplete="off" />
+          </div>
+
+          <div class="field field--half">
+            <label for="time">Preferred Time</label>
+            <select id="time" name="time">
+              <option value="">Any time</option>
+              <option value="Morning (10 AM – 12 PM)">Morning (10 AM – 12 PM)</option>
+              <option value="Afternoon (12 PM – 4 PM)">Afternoon (12 PM – 4 PM)</option>
+              <option value="Evening (4 PM – 8 PM)">Evening (4 PM – 8 PM)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Message <span class="field__opt">(optional)</span></label>
+            <textarea id="message" name="message" rows="3" autocomplete="off"
+                      placeholder="Any specific request or preferred stylist?"></textarea>
+          </div>
+
+          <!-- Honeypot: hidden from real users, catches spam bots -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="company">Company (leave empty)</label>
+            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button class="btn btn--whatsapp btn--lg btn--block" type="submit">
+            <span class="btn__wa-icon" aria-hidden="true">✆</span> Send Booking via WhatsApp
+          </button>
+
+          <div id="form-success" class="form-success" role="status" aria-live="polite" hidden>
+            <strong>Thank you! Your booking request has been saved.</strong>
+            <p>We've opened WhatsApp so you can send us your request. See you soon!</p>
+            <p id="whatsapp-fallback-wrap" class="whatsapp-fallback-wrap" hidden>
+              If WhatsApp didn't open,
+              <a id="whatsapp-fallback" href="#" rel="noopener">tap here to message us</a>.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer id="contact" class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__col">
+        <h2 class="site-footer__brand" data-salon-name>A Plus Salon</h2>
+        <p data-tagline>Look Your Best, Feel Your Best</p>
+      </div>
+      <div class="site-footer__col">
+        <h3>Visit Us</h3>
+        <p><span data-address>123 Main Street</span>, <span data-city>Your City</span></p>
+        <p data-hours>Mon–Sun: 10:00 AM – 8:00 PM</p>
+      </div>
+      <div class="site-footer__col">
+        <h3>Contact</h3>
+        <p><a data-phone-link href="#"><span data-phone>+91 99999 99999</span></a></p>
+        <p><a class="footer-wa" data-whatsapp-link href="#" rel="noopener">Message on WhatsApp</a></p>
+        <p class="site-footer__social">
+          <a data-social="instagram" href="#" rel="noopener">Instagram</a>
+          <a data-social="facebook" href="#" rel="noopener">Facebook</a>
+          <a data-social="maps" href="#" rel="noopener">Find us on Maps</a>
+        </p>
+      </div>
+    </div>
+    <div class="site-footer__bottom container">
+      <p>&copy; <span data-year>2025</span> <span data-salon-name>A Plus Salon</span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Config first, then main logic -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
