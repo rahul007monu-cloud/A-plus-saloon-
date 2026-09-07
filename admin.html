@@ -13,6 +13,14 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
 
+  <!-- PWA: installable app (Android/Chrome + iOS "Add to Home Screen") -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="assets/img/app-icon.svg" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="A Plus Salon" />
+
   <!-- Shared styles -->
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
@@ -119,5 +127,6 @@
   <!-- Config first, then dashboard logic -->
   <script src="assets/js/config.js"></script>
   <script src="assets/js/admin.js"></script>
+  <script src="assets/js/pwa.js"></script>
 </body>
 </html>

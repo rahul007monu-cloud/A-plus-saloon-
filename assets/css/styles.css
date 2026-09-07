@@ -812,3 +812,119 @@ p {
     transition: none;
   }
 }
+
+
+/* ==========================================================================
+   PWA install popup (Android install prompt + iOS "Add to Home Screen")
+   ========================================================================== */
+.pwa-install {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  pointer-events: none;
+}
+.pwa-install__card {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 14px 16px;
+  transform: translateY(140%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.pwa-install.is-visible .pwa-install__card {
+  transform: translateY(0);
+  opacity: 1;
+}
+.pwa-install__icon {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(42, 26, 46, 0.18);
+}
+.pwa-install__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.pwa-install__title {
+  margin: 0 0 2px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-plum);
+}
+.pwa-install__text {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+}
+.pwa-install__ios-icon {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.pwa-install__actions {
+  flex: 0 0 auto;
+}
+.pwa-install__cta {
+  white-space: nowrap;
+}
+.pwa-install__close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  line-height: 1;
+  font-size: 1.4rem;
+  color: var(--color-muted);
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.pwa-install__close:hover {
+  background: var(--color-border);
+  color: var(--color-ink);
+}
+
+/* iOS instruction popup has no CTA button, so let the text use full width */
+.pwa-install__actions:empty {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .pwa-install__card {
+    flex-wrap: wrap;
+    padding-right: 40px;
+  }
+  .pwa-install__actions {
+    width: 100%;
+  }
+  .pwa-install__cta {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pwa-install__card {
+    transition: opacity 0.2s ease;
+    transform: none;
+  }
+}

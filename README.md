@@ -176,6 +176,36 @@ channel, and CSV export is your backup.
 
 ---
 
+## Installable app (PWA)
+
+The site is a **Progressive Web App**, so customers (and you) can install it to
+the home screen on **both Android and iOS** — no app store, no download, free.
+
+- **Android / Chrome / Edge:** an **"Install App"** popup appears automatically
+  when the site is installable. Tapping it opens the native install dialog and
+  adds the app to the home screen.
+- **iPhone / iPad (Safari):** iOS has no automatic install button, so the app
+  shows a short instruction popup — tap the **Share** button, then
+  **"Add to Home Screen"**.
+- Once installed it opens **full-screen** (no browser bars), works offline for
+  the core pages, and uses the salon's app icon.
+
+Files that power this:
+
+- `manifest.webmanifest` — app name, icons, colors, `display: standalone`.
+- `sw.js` — service worker (offline cache of the app shell + installability).
+- `assets/js/pwa.js` — registers the service worker and shows the install popup
+  (native prompt on Android, instructions on iOS). It hides itself once
+  installed and won't nag (dismissal is remembered for 7 days).
+- `assets/img/app-icon.svg` — the home-screen app icon.
+
+> **Note:** installability requires **HTTPS**, which Vercel provides
+> automatically. On `localhost` it also works for testing. The app icon is an
+> SVG (crisp at every size); if you later want a raster PNG icon, generate
+> `192×192` and `512×512` PNGs and add them to `manifest.webmanifest`.
+
+---
+
 ## Deferred / future phases
 
 The following were intentionally **left out of this MVP** because they require

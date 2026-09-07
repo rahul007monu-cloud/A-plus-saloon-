@@ -1,0 +1,41 @@
+{
+  "name": "A Plus Salon",
+  "short_name": "A Plus Salon",
+  "description": "Book haircuts, hair color, facials, bridal makeup and more instantly on WhatsApp.",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2a1a2e",
+  "theme_color": "#2a1a2e",
+  "lang": "en",
+  "categories": ["lifestyle", "beauty", "business"],
+  "icons": [
+    {
+      "src": "assets/img/app-icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/app-icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/app-icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book Appointment",
+      "short_name": "Book",
+      "url": "./index.html?source=pwa#booking",
+      "description": "Jump straight to the booking form"
+    }
+  ]
+}
